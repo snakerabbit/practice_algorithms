@@ -4,7 +4,13 @@
 # The result is called a 'digital root'.
 # Do not use string conversion within your method.
 def digital_root(number)
+  return number if number < 10
+  root = digital_root(number/10) + digital_root(number%10)
+  if root >=10
+    root = digital_root(root)
+  end
 
+  root
 end
 
 # Write a function that takes a message and an increment amount.
@@ -12,7 +18,7 @@ end
 # Assume lowercase and no punctuation.
 # Preserve spaces.
 def caesar_cipher(string, shift)
-
+  
 end
 
 # Write a function that takes two strings.
@@ -277,5 +283,5 @@ end
 
 # Write a method that takes an array and returns all its permutations.
 def permutations(array)
-  
+
 end
