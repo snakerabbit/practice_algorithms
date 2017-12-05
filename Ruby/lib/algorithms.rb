@@ -96,7 +96,13 @@ end
 
 # Write a method that finds all the unique substrings for a word.
 def uniq_subs(string)
-
+  subs = Set.new
+  string.length.times do |i|
+    (i...string.length).each do |j|
+      subs.add(string[i..j])
+    end
+  end
+  subs.to_a
 end
 
 # Given an array of integers find the largest contiguous subsum.
