@@ -82,14 +82,15 @@ end
 # It should return true if the input is a valid IPv4 address.
 # Valid IPs are anything between '0.0.0.0' and '255.255.255.255'.
 def valid_ip?(string)
-
+  nums = string.split('.').map{|num| num.to_i}
+  nums.all?{|num| num >=0 && num<=255}
 end
 
 # Implement the Folding Cipher.
 # It folds the alphabet in half and uses the adjacent letter.
 # a -> z, b -> y, c -> x, m -> n, etc...
 def folding_cipher(string)
-
+  
 end
 
 # Write a method that finds all the unique substrings for a word.
