@@ -66,7 +66,16 @@ end
 # Return true if the string is a palindrome, otherwise return false.
 # It should take less time and memory than reversing the string.
 def is_palindrome?(string)
-
+  return true if string.length <=1
+  halfway_point = string.length/2
+  pointer1 = 0
+  pointer2 = string.length - 1
+  until pointer1 == halfway_point || pointer2 == halfway_point
+    return false if string[pointer1] != string[pointer2]
+    pointer1 +=1
+    pointer2 -=1
+  end
+  true
 end
 
 # Write a method that takes a string as input.
