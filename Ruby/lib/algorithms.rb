@@ -90,7 +90,8 @@ end
 # It folds the alphabet in half and uses the adjacent letter.
 # a -> z, b -> y, c -> x, m -> n, etc...
 def folding_cipher(string)
-  
+  folded = Hash[('a'..'z').zip(('a'..'z').to_a.reverse)]
+  string.chars.map { |char| folded[char] }.join('')
 end
 
 # Write a method that finds all the unique substrings for a word.
