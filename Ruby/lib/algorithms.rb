@@ -36,13 +36,21 @@ end
 # Write a function that takes two strings.
 # Return the longest common substring.
 def common_substrings(string_one, string_two)
+  matrix = Array.new(string_one.length){Array.new(string_two.length)}
+  string_one.each_with_index do |char1, i|
+    string_two.each_with_index do |char2, j|
 
+    end
+  end
 end
 
 # Write a function that takes an array of integers and returns their sum.
 # Use recursion.
 def sum_rec(numbers)
-
+  #take in an array of numbers
+  #if the array length is 1, return itself (last)
+  return numbers[-1] if numbers.length == 1
+  sum_rec(numbers[0...-1]) + numbers[-1]
 end
 
 # Write a function that takes n, the length of the sequence.
