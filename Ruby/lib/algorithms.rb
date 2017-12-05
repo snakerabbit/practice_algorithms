@@ -47,8 +47,6 @@ end
 # Write a function that takes an array of integers and returns their sum.
 # Use recursion.
 def sum_rec(numbers)
-  #take in an array of numbers
-  #if the array length is 1, return itself (last)
   return numbers[-1] if numbers.length == 1
   sum_rec(numbers[0...-1]) + numbers[-1]
 end
@@ -56,6 +54,11 @@ end
 # Write a function that takes n, the length of the sequence.
 # Return the first n elements from the fibonnacci sequence as an array.
 def fibs(n)
+  return [0] if n == 1
+  return [0,1] if n == 2
+  previous = fibs(n-1)
+  next_num = previous[-2] + previous[-1]
+  previous.concat([next_num])
 
 end
 
