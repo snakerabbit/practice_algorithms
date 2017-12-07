@@ -109,14 +109,35 @@ end
 # You can solve this trivially in O(n**2) time by considering all subarrays.
 # Try to solve it in O(n) time with O(1) memory.
 def lcs(array)
-
+  sum = 0
+  max = array.first || 0
+  array.each do |el|
+    sum += el
+    if max < sum
+      max = sum
+    end
+    sum = 0 if sum < 0
+  end
+  max
 end
 
 # Write a function that takes a year as a four digit integer.
 # Returns an array of the 10 closest subsequent silly years.
 # A silly year's first two digits plus the last two digits equal the middle two.
 def silly_years(year)
-
+  silly_arr = []
+  current_year = year+1
+  until silly_arr.length == 10
+    digits = current_year.to_s.split('')
+    first_two = digits[0..1].join('').to_i
+    last_two = digits[-2..-1].join('').to_i
+    middle_two = digits[1..2].join('').to_i
+    if first_two + last_two == middle_two
+      silly_arr << current_year
+    end
+    current_year += 1
+  end
+  silly_arr
 end
 
 # Take an array of integers, and integer k.
@@ -125,7 +146,7 @@ end
 # Time complexity: O(n).
 # Return a set.
 def pair_sum(array, k)
-
+  
 end
 
 # Take a matrix of integers and coordinates.
