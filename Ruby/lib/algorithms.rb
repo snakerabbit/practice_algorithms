@@ -146,7 +146,17 @@ end
 # Time complexity: O(n).
 # Return a set.
 def pair_sum(array, k)
-  
+  #for each element in the array, find the target number to sum to k
+  pairs = Set.new
+  seen = Set.new
+  array.each do |el|
+    num = k-el
+    if seen.include?(num)
+      pairs.add([[el, num].min, [el,num].max])
+    end
+    seen.add(el)
+  end
+  pairs
 end
 
 # Take a matrix of integers and coordinates.
