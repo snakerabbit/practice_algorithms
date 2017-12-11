@@ -164,17 +164,38 @@ end
 # Find the sum of numbers falling inside the rectangle.
 # Time complexity: O(number of rows * number of columns).
 def matrix_region_sum(matrix, top_left_coords, bottom_right_coords)
+  total = 0
 
+  (top_left_coords[0]..bottom_right_coords[0]).each do |row_idx|
+    (top_left_coords[1]..bottom_right_coords[1]).each do |col_idx|
+      total += matrix[row_idx][col_idx]
+    end
+  end
+
+  total
 end
 
 # Implement Merge Sort
 # Hint: This typically involves a helper function.
 def merge_sort(array)
+  return array if array.count < 2
 
+  middle = array.count / 2
+  left, right = array.take(middle), array.drop(middle)
+
+  sorted_left, sorted_right = merge_sort(left), merge_sort(right)
+
+  merge(sorted_left, sorted_right)
 end
 
 def merge(left, right)
+  merged = []
+  until left.empty? || right.empty?
+    merged <<
+      ((left.first < right.first) ? (left.shift) : (right.shift))
+  end
 
+  merged + left + right
 end
 
 # Implement binary search.
