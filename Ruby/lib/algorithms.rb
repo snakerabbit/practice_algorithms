@@ -201,19 +201,47 @@ end
 # Implement binary search.
 # Return nil if the target isn't found.
 def binary_search(array, target)
+  return nil if array.count == 0
 
+  midpoint = array.length / 2
+  case target <=> array[midpoint]
+  when -1
+    binary_search(array.take(midpoint), target)
+  when 0
+    midpoint
+  when 1
+    subproblem_answer =
+      binary_search(array.drop(midpoint + 1), target)
+    subproblem_answer.nil? ? nil : (midpoint + 1) + subproblem_answer
+  end
 end
 
 # You are given a list of numbers in an array.
 # Replace all the numbers with the product of all other numbers.
 # Do this in O(n) time without using division.
 def productify(array)
+  products = Array.new(arr.length, 1)
+  lower = 1
+  0.upto(arr.size - 1) do |i|
+    products[i] = products[i] * lower
+    lower = lower * arr[i]
+  end
+  upper = 1
+  (arr.size - 1).downto(0) do |i|
+    products[i] = products[i] * upper
+    upper = upper * arr[i]
+  end
 
+  products
 end
 
 # Write a function that takes an array and returns all of its subsets.
 def subsets(array)
-
+  return [[]] if array.empty?
+  first_el = array[0]
+  previous = subsets(array[1..-1])
+  added = previous.map { |el| el + [first_el] }
+  previous.concat(added)
 end
 
 # Return the indices of the start/end of the longest palindrome in the string.
@@ -228,7 +256,12 @@ end
 # Use sorting to solve in O(nlog(n)).
 # Next, improve this to O(n) time (maybe use a non-array datastructure).
 def fast_intersection(array_one, array_two)
-
+  intersection = []
+  set1 = array_one.to_set
+  array_two.each do |el|
+    intersection << el if set1[el]
+  end
+  intersection
 end
 
 # Write a function that takes two arrays of integers
