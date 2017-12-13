@@ -248,7 +248,33 @@ end
 # You could reverse the string and compare it to the original, but that is slow.
 # Instead, you should be able to solve the problem with O(1) memory.
 def longest_palindrome(string)
+  best_palindrome_start = 0
+  best_palindrome_len = 0
 
+  0.upto(string.length - 1).each do |start|
+    # micro-optimization: don't look at substrings shorter than best
+    # palindrome.
+    len = best_palindrome_len + 1
+    while start + len <= string.length
+      if is_palindrome?(string, start, len)
+        best_palindrome_start, best_palindrome_len = start, len
+      end
+
+      len += 1
+    end
+  end
+
+  [best_palindrome_start, best_palindrome_start + best_palindrome_len - 1]
+end
+
+def is_palindrome?(string, start, len)
+  len.times do |i|
+    if string[start + i] != string[(start + len - 1) - i]
+      return false
+    end
+  end
+
+  true
 end
 
 # Given two arrays, find the intersection of both sets.
@@ -269,14 +295,17 @@ end
 # Don't generate all subsets of both arrays, which would be exponential time.
 # Instead, directly generate the subsets of both.
 def common_subsets(array_one, array_two)
-
+  subsets(intersection(array_one, array_two))
 end
 
 # You are given an array and index.
 # Find if it's possible to reach 0 by starting at the index.
 # You can only move left or right by the distance found at array[index].
-def can_win?(array, index)
-
+def can_win?(array, index=0, seen={})
+  return true if array[index] == 0
+  return false if !index.between?(0, array.length-1)
+  seen[index] = true
+  can_win?(array, index+array[index], seen) || can_win?(array, index-array[index], seen)
 end
 
 # Assume an array of length n, containing the numbers 1..n in jumbled order.
