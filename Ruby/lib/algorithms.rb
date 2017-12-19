@@ -319,7 +319,13 @@ end
 # Sort this array in O(n + N) time.
 # You may use O(N) memory.
 def sort2(array, max_value)
-  
+  count = Hash.new(0)
+  result = []
+  array.each{ |el| count[el] += 1}
+  count.each do |el, ct|
+    ct.times{ result << el }
+  end
+  result
 end
 
 # Say I give you an array of n strings, each of length k.
