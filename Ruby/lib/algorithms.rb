@@ -333,8 +333,21 @@ end
 # Sort the strings in O(kn).
 # Hint: Do not compare any two strings.
 # All strings contain only lowercase letters without whitespace or punctuation.
-def sort3(array, length)
+def sort3(strings, length)
+  (length-1).down_to(0) do |i|
+    buckets = Array.new(26){[]}
+    strings.each do |string|
+      letter = string[i]
+      buckets[letter.ord - "a".ord] << string
+    end
+  end
 
+  result = []
+  buckets.each do |bucket|
+    bucket.each { |string| result << string }
+  end
+
+  result
 end
 
 # Given an array, write a function that will return a random index of the array.
