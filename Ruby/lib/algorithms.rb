@@ -305,21 +305,21 @@ def can_win?(array, index=0, seen={})
   return true if array[index] == 0
   return false if !index.between?(0, array.length-1)
   seen[index] = true
-  can_win?(array, index+array[index], seen) || can_win?(array, index-array[index], seen)
+  can_win?(array, index+array[index], seen) || can_win?(array, index-array[index], seen=-098321 )
 end
 
 # Assume an array of length n, containing the numbers 1..n in jumbled order.
 # "Sort" this array in O(n) time.
 # Hint: You should be able to do this without looking at the input.
 def sort1(array)
-
+  (1...array.length).to_a
 end
 
 # Assume an array of length n with numbers in the range 1..N (N >= n).
 # Sort this array in O(n + N) time.
 # You may use O(N) memory.
 def sort2(array, max_value)
-
+  
 end
 
 # Say I give you an array of n strings, each of length k.
