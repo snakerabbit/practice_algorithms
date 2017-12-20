@@ -369,6 +369,16 @@ def weighted_random_index(array)
   result[rand_ind]
 end
 
+def weighted_random_index2(array)
+  total = array.inject(:+)
+  value = rand(total)
+  cumulative_total = 0
+  array.each_with_index do |el|
+    cumulative_total += el
+    return i if value < cumulative_total
+  end
+end
+
 # Given an array, move all zeros to the end.
 # The order of non-zero elements does not matter.
 # Try to accomplish this in O(n) time and O(1) space.
