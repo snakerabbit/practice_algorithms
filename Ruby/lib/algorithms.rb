@@ -353,15 +353,27 @@ end
 # Given an array, write a function that will return a random index of the array.
 # The chance of returning a given index will vary with the value of the element.
 # Probability of i should be the ith element divided by the sum of all elements.
+#[1,2,3]
+#indices = 0, 1, 2
+#probabilities = [1/6, 2/6, 3/6]
+#[0, 1, 1, 2, 2, 2]
 def weighted_random_index(array)
+  total = array.inject(:+)
+  result = []
+  array.each_with_index do |el, i|
+    el.times{result << i}
+  end
 
+  rand_num = Random.new
+  rand_ind = rand_num.rand(total-1)
+  result[rand_ind]
 end
 
 # Given an array, move all zeros to the end.
 # The order of non-zero elements does not matter.
 # Try to accomplish this in O(n) time and O(1) space.
 def move_zeros(array)
-
+  
 end
 
 # Implement the 'look and say' function.
