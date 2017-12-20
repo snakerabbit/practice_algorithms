@@ -383,7 +383,13 @@ end
 # The order of non-zero elements does not matter.
 # Try to accomplish this in O(n) time and O(1) space.
 def move_zeros(array)
-  
+  array.each do |el|
+    if el == 0
+      array.pop(el)
+      array.push(el)
+    end
+  end
+  array
 end
 
 # Implement the 'look and say' function.
