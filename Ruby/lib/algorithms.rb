@@ -397,7 +397,19 @@ end
 # The output describes the count of the elements in the input.
 
 def look_and_say(array)
+  return [] if array.empty?
+  output = [[1, array[0]]]
 
+  (1...array.length).each do |idx|
+    el = array[idx]
+    if el == output.last[1]
+      output.last[0] +=1
+    else
+      output << [1, el]
+    end
+  end
+
+  output
 end
 
 # I give you a scrambled list of n unique integers between 0 and n.
