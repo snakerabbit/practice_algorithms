@@ -416,7 +416,9 @@ end
 # Tell me what number is missing?
 # How could you solve the problem in O(n), and also O(1) space?
 def sum_upon_sums(array)
-
+  array_sum = array.inject(:+)
+  total = (0..n).to_a.inject(:+)
+  total - array_sum
 end
 
 # Implement a stack with a max method that returns the maximum value.
