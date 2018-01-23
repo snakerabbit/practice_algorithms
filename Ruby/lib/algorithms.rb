@@ -201,19 +201,36 @@ end
 # Implement binary search.
 # Return nil if the target isn't found.
 def binary_search(array, target)
-  return nil if array.count == 0
-
-  midpoint = array.length / 2
+  return nil if array.length == 0
+  midpoint = array.length/2
   case target <=> array[midpoint]
   when -1
     binary_search(array.take(midpoint), target)
   when 0
     midpoint
   when 1
-    subproblem_answer =
-      binary_search(array.drop(midpoint + 1), target)
-    subproblem_answer.nil? ? nil : (midpoint + 1) + subproblem_answer
+    ans = binary_search(array.drop(midpoint + 1), target)
+    if ans.nil?
+      nil
+    else
+      ans + midpoint + 1
+    end
   end
+end
+
+  # return nil if array.count == 0
+  #
+  # midpoint = array.length / 2
+  # case target <=> array[midpoint]
+  # when -1
+  #   binary_search(array.take(midpoint), target)
+  # when 0
+  #   midpoint
+  # when 1
+  #   subproblem_answer =
+  #     binary_search(array.drop(midpoint + 1), target)
+  #   subproblem_answer.nil? ? nil : (midpoint + 1) + subproblem_answer
+  # end
 end
 
 # You are given a list of numbers in an array.
