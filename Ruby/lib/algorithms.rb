@@ -178,24 +178,35 @@ end
 # Implement Merge Sort
 # Hint: This typically involves a helper function.
 def merge_sort(array)
-  return array if array.count < 2
-
-  middle = array.count / 2
+  return array if array.length < 2
+  middle = array.length/2
   left, right = array.take(middle), array.drop(middle)
-
   sorted_left, sorted_right = merge_sort(left), merge_sort(right)
-
   merge(sorted_left, sorted_right)
+  # return array if array.count < 2
+  #
+  # middle = array.count / 2
+  # left, right = array.take(middle), array.drop(middle)
+  #
+  # sorted_left, sorted_right = merge_sort(left), merge_sort(right)
+  #
+  # merge(sorted_left, sorted_right)
 end
 
 def merge(left, right)
   merged = []
   until left.empty? || right.empty?
-    merged <<
-      ((left.first < right.first) ? (left.shift) : (right.shift))
+    merged << ((left.first < right.first) ? (left.shift) : right.shift)
   end
 
   merged + left + right
+  # merged = []
+  # until left.empty? || right.empty?
+  #   merged <<
+  #     ((left.first < right.first) ? (left.shift) : (right.shift))
+  # end
+  #
+  # merged + left + right
 end
 
 # Implement binary search.
