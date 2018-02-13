@@ -6,7 +6,7 @@
 def digital_root(number)
   return number if number < 10
   root = digital_root(number/10) + digital_root(number%10)
-  if root >=10
+  if root >= 10
     root = digital_root(root)
   end
 
@@ -242,7 +242,7 @@ end
   #     binary_search(array.drop(midpoint + 1), target)
   #   subproblem_answer.nil? ? nil : (midpoint + 1) + subproblem_answer
   # end
-end
+
 
 # You are given a list of numbers in an array.
 # Replace all the numbers with the product of all other numbers.
@@ -330,10 +330,7 @@ end
 # Find if it's possible to reach 0 by starting at the index.
 # You can only move left or right by the distance found at array[index].
 def can_win?(array, index=0, seen={})
-  return true if array[index] == 0
-  return false if !index.between?(0, array.length-1)
-  seen[index] = true
-  can_win?(array, index+array[index], seen) || can_win?(array, index-array[index], seen=-098321 )
+
 end
 
 # Assume an array of length n, containing the numbers 1..n in jumbled order.
@@ -411,13 +408,6 @@ end
 # The order of non-zero elements does not matter.
 # Try to accomplish this in O(n) time and O(1) space.
 def move_zeros(array)
-  array.each do |el|
-    if el == 0
-      array.pop(el)
-      array.push(el)
-    end
-  end
-  array
 end
 
 # Implement the 'look and say' function.
