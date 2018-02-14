@@ -62,6 +62,8 @@ end
 def sum_rec(numbers)
   return numbers[-1] if numbers.length == 1
   sum_rec(numbers[0...-1]) + numbers[-1]
+  # return numbers[-1] if numbers.length == 1
+  # sum_rec(numbers[0...-1]) + numbers[-1]
 end
 
 # Write a function that takes n, the length of the sequence.
