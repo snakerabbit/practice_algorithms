@@ -31,6 +31,19 @@ def caesar_cipher(string, shift)
     end
   end
   new_string
+  # letters = string.split('')
+  # alpha = ('a'..'z').to_a
+  # new_string = ""
+  # letters.each do |char|
+  #   if char == ' '
+  #     new_string.concat(char)
+  #   else
+  #     idx = alpha.index(char)
+  #     new_idx = (idx+shift)%26
+  #     new_string.concat(alpha[new_idx])
+  #   end
+  # end
+  # new_string
 end
 
 # Write a function that takes two strings.
