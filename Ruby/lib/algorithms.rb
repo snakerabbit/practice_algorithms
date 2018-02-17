@@ -62,18 +62,16 @@ end
 def sum_rec(numbers)
   return numbers[-1] if numbers.length == 1
   sum_rec(numbers[0...-1]) + numbers[-1]
-  # return numbers[-1] if numbers.length == 1
-  # sum_rec(numbers[0...-1]) + numbers[-1]
 end
 
 # Write a function that takes n, the length of the sequence.
 # Return the first n elements from the fibonnacci sequence as an array.
 def fibs(n)
-  return [0] if n == 1
-  return [0,1] if n == 2
-  previous = fibs(n-1)
-  next_num = previous[-2] + previous[-1]
-  previous.concat([next_num])
+  # return [0] if n == 1
+  # return [0,1] if n == 2
+  # previous = fibs(n-1)
+  # next_num = previous[-2] + previous[-1]
+  # previous.concat([next_num])
 
 end
 
