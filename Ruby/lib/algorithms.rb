@@ -112,6 +112,8 @@ end
 def valid_ip?(string)
   nums = string.split('.').map{|num| num.to_i}
   nums.all?{|num| num >=0 && num<=255}
+  # nums = string.split('.').map{|num| num.to_i}
+  # nums.all?{|num| num >=0 && num<=255}
 end
 
 # Implement the Folding Cipher.
