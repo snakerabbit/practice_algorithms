@@ -8,7 +8,12 @@ if(typeof Algorithms === "undefined") {
 // If it is greater than or equal to 10, sum the digits of the resulting number.
 // Keep repeating until there is only one digit in the result, called the "digital root".
 // Do not use string conversion within your method.
-Algorithms.digitalRoot = function (number) {
+Algorithms.digitalRoot = function (number) {//123
+  if(number < 10){
+    return number;
+  } else {
+    return this.digitalRoot(this.digitalRoot(number % 10) + this.digitalRoot(Math.floor(number / 10)));
+  }
 
 };
 
