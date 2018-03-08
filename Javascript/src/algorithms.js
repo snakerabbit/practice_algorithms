@@ -32,24 +32,25 @@ Algorithms.caesarCipher = function (string, shift) {
 
 // Write a function that takes two strings and returns the lenght of the longest common substring.
 Algorithms.commonSubstrings = function (stringOne, stringTwo) {
-  let twoDArray = new Array(stringOne.length);
-  for(let i = 0; i < twoDArray.length; i++){
-    twoDArray[i] = new Array(stringTwo.length);
-  }
-
+  let twoDArray = new Array(stringOne.length).fill(new Array(stringTwo.length).fill(0));
+  var length = 0;
+  var end = null;
+  var start = end - length + 1 || 0;
   stringOne.split('').forEach(char1 =>{
     stringTwo.split('').forEach(char2 =>{
       var index1 = stringOne.indexOf(char1);
       var index2 = stringTwo.indexOf(char2);
       if(char1 === char2){
-        twoDArray[index1][index2] += twoDArray[index1-1][index2-1];
-      } else {
-        twoDArray[index1][index2] = 0;
+        twoDArray[index1][index2] = twoDArray[index1-1][index2-1] + 1;
+        if (twoDArray[index1][index2] > length){
+          length = twoDArray[index1][index2];
+          end = index1;
+        }
       }
     });
   });
 
-  
+  return stringOne.slice(start, end);
 
 };
 
