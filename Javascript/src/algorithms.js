@@ -36,10 +36,8 @@ Algorithms.commonSubstrings = function (stringOne, stringTwo) {
   var length = 0;
   var end = null;
   var start = end - length + 1 || 0;
-  stringOne.split('').forEach(char1 =>{
-    stringTwo.split('').forEach(char2 =>{
-      var index1 = stringOne.indexOf(char1);
-      var index2 = stringTwo.indexOf(char2);
+  stringOne.split('').forEach((char1, index1) =>{
+    stringTwo.split('').forEach((char2, index2) =>{
       if(char1 === char2){
         twoDArray[index1][index2] = twoDArray[index1-1][index2-1] + 1;
         if (twoDArray[index1][index2] > length){
@@ -57,7 +55,11 @@ Algorithms.commonSubstrings = function (stringOne, stringTwo) {
 // Write a function that takes an array of integers and returns their sum.
 // Use recursion.
 Algorithms.sumRec = function (numbers) {
-
+  if(numbers.length === 1){
+    return numbers[numbers.length - 1];
+  }
+  let previous = this.sumRec(numbers.slice(0, -1));
+  return previous + numbers[numbers.length - 1];
 };
 
 // Write a function which returns the first n elements from the fibonnacci sequence, given n.
