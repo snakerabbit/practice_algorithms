@@ -49,12 +49,24 @@ end
 # Write a function that takes two strings.
 # Return the longest common substring.
 def common_substrings(string_one, string_two)
-  matrix = Array.new(string_one.length){Array.new(string_two.length)}
-  string_one.each_with_index do |char1, i|
-    string_two.each_with_index do |char2, j|
-
+  matrix = Array.new(string_one.length, 0){Array.new(string_two.length, 0)}
+  length = 0
+  idx = 0
+  beg = idx-length+1
+  string_one.chars.each_with_index do |char1, i|
+    string_two.chars.each_with_index do |char2, j|
+      if char1 == char2
+        matrix[i][j] = matrix[i-1][j-1] + 1
+        if matrix[i][j] > length
+          idx = i
+          length = matrix[i][j]
+        end
+      end
     end
   end
+
+  return string_one[beg..idx]
+
 end
 
 # Write a function that takes an array of integers and returns their sum.

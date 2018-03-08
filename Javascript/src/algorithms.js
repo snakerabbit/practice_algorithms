@@ -21,11 +21,35 @@ Algorithms.digitalRoot = function (number) {//123
 // Assume lowercase and no punctuation.
 // Preserve spaces.
 Algorithms.caesarCipher = function (string, shift) {
-
+  let alpha ="abcdefghijklmnopqrstuvwxyz".split("");
+  let newString = "";
+  string.split("").forEach(letter =>{
+    let newIdx = (alpha.indexOf(letter) + shift)%26;
+    newString += alpha[newIdx];
+  });
+  return newString;
 };
 
 // Write a function that takes two strings and returns the lenght of the longest common substring.
 Algorithms.commonSubstrings = function (stringOne, stringTwo) {
+  let twoDArray = new Array(stringOne.length);
+  for(let i = 0; i < twoDArray.length; i++){
+    twoDArray[i] = new Array(stringTwo.length);
+  }
+
+  stringOne.split('').forEach(char1 =>{
+    stringTwo.split('').forEach(char2 =>{
+      var index1 = stringOne.indexOf(char1);
+      var index2 = stringTwo.indexOf(char2);
+      if(char1 === char2){
+        twoDArray[index1][index2] += twoDArray[index1-1][index2-1];
+      } else {
+        twoDArray[index1][index2] = 0;
+      }
+    });
+  });
+
+  
 
 };
 
