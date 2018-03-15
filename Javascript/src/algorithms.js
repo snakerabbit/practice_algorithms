@@ -94,7 +94,20 @@ Algorithms.isPalindrome = function (string) {
 // It folds the alphabet in half and uses the adjacent letter.
 // a <=> z, b <=> y, c <=> x, m <=> n.
 Algorithms.foldingCipher = function (string) {
+  let alphabet = "abcdefghijklmnopqrstuvwxyz"
+  let alpha = alphabet.split('');
+  let beta = alphabet.split('').reverse();
+  let folded = {};
+  alpha.forEach((char, idx) =>{
+    folded[char] = beta[idx];
+  });
+  let newString = '';
 
+  string.split('').forEach(char =>{
+    newString += folded[char];
+  });
+
+  return newString;
 };
 
 // Write a method that finds all the unique substrings for a word.
