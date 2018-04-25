@@ -564,7 +564,7 @@ def permutations(array)
 end
 
 
-def bfs(node, target)
+def dfs(node, target)
   return nil if !node
   return node if node.value == target
   left = bfs(node.left, target)
@@ -572,4 +572,19 @@ def bfs(node, target)
   return left if left
   return right if right
   return nil
+end
+
+def bfs(node, target)
+  queue = []
+  queue.push(node)
+  until queue.empty?
+      if current_node.value === target
+        return current_node
+      end
+      queue.push(current_node.left) if current_node.left
+      queue.push(current_node.right) if current_node.right
+      queue.shift(current_node)
+  end
+  nil
+
 end
