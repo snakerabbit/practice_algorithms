@@ -562,3 +562,14 @@ end
 def permutations(array)
 
 end
+
+
+def bfs(node, target)
+  return nil if !node
+  return node if node.value == target
+  left = bfs(node.left, target)
+  right = bfs(node.right, target)
+  return left if left
+  return right if right
+  return nil
+end

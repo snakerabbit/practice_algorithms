@@ -113,10 +113,12 @@ Algorithms.foldingCipher = function (string) {
 // Write a method that finds all the unique substrings for a word.
 Algorithms.uniqSubs = function (string) {
   var arr = [];
+  // var arr = new Set();
   for(let i = 0; i<string.length; i++){
     for(let j = i+1; j<string.length+1 ; j++){
       if(!arr.includes(string.slice(i,j))){
         arr.push(string.slice(i,j));
+      //arr.add(string.slice(i,j));
       }
     }
   }
@@ -129,7 +131,7 @@ Algorithms.uniqSubs = function (string) {
 // You can solve this trivially in O(n**2) time by considering all subarrays.
 // Try to solve it in O(n) time with O(1) memory.
 Algorithms.lcs = function (array) {
-
+  
 };
 
 // Write a function that takes a year (four digit integer) and returns an array with the 10 closest subsequent years that meet the following condition:
