@@ -565,6 +565,24 @@ end
 
 
 ##Binary Tree
+class BSTNode
+  attr_reader :value, :left, :right, :parent
+  def initialize(value)
+    @value = value
+    @left = nil
+    @right = nil
+  end
+
+  def left=(left)
+    @left = left
+  end
+
+  def right=(right)
+    @right = right
+  end
+
+end
+
 
 def in_order_traversal(node, arr=[])
   return arr if !node
@@ -602,11 +620,55 @@ def is_bst?(node)
   arr = in_order_traversal(node)
   is_sorted(arr)
 end
-#[1,2]
+
 def is_sorted(arr)
   return true if arr.length < 2
   if arr[-1] > arr[-2]
     return is_sorted(arr[0...-1])
   end
+  return false
+end
+
+
+
+# path = []
+# n1 = BSTNode.new(5)
+# n2 = BSTNode.new(3)
+# n3 = BSTNode.new(2)
+# n4 = BSTNode.new(4)
+# n5 = BSTNode.new(6)
+# n6 = BSTNode.new(1)
+# n1.left = n2
+# n1.right = n5
+# n2.left = n3
+# n2.right = n4
+# n4.left = n6
+# def show_node_values(arr)
+#   arr.map { |e| e.value  }
+# end
+
+def lowest_common_ancestor(node1, node2, head)
+  path1, path2 = [], []
+  find_path(head, node1.value, path1)
+  find_path(head, node2.value, path2)
+  path1.each do |el|
+    return el.value if path2.include?(el)
+  end
+  return nil
+end
+
+def find_path(node, target, path)
+  return false if !node
+  return true if node.value == target
+
+  if(node.left && find_path(node.left, target, path))
+    path.push(node)
+    return true
+  end
+  if(node.right && find_path(node.right, target ,path))
+    path.push(node)
+    return true
+  end
+
   return false
 end
