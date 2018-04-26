@@ -564,27 +564,49 @@ def permutations(array)
 end
 
 
+##Binary Tree
+
+def in_order_traversal(node, arr=[])
+  return arr if !node
+  left, right = node.left, node.right
+  return in_order_traversal(left) + arr[node.value] + in_order_traversal(right)
+end
+
 def dfs(node, target)
   return nil if !node
   return node if node.value == target
-  left = bfs(node.left, target)
-  right = bfs(node.right, target)
+  left, right = dfs(node.left, target), dfs(node.right, target)
   return left if left
   return right if right
   return nil
 end
 
 def bfs(node, target)
+  return nil if !node
+
   queue = []
   queue.push(node)
   until queue.empty?
-      if current_node.value === target
-        return current_node
-      end
-      queue.push(current_node.left) if current_node.left
-      queue.push(current_node.right) if current_node.right
-      queue.shift(current_node)
+    current_node = queue[0]
+    if current_node.value == target
+      return current_node
+    end
+    queue.push(current_node.left) if current_node.left
+    queue.push(current_Node.right) if current_node.right
+    queue.shift(current_node)
   end
   nil
+end
 
+def is_bst?(node)
+  arr = in_order_traversal(node)
+  is_sorted(arr)
+end
+#[1,2]
+def is_sorted(arr)
+  return true if arr.length < 2
+  if arr[-1] > arr[-2]
+    return is_sorted(arr[0...-1])
+  end
+  return false
 end
