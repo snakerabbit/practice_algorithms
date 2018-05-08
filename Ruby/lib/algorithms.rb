@@ -672,3 +672,137 @@ def find_path(node, target, path)
 
   return false
 end
+## Study Plan
+
+def bfs(node, target)
+  queue = []
+  queue.push(node)
+  until queue.empty?
+    current = queue.unshift()
+    if node.value == target
+      return current
+    end
+    queue.push(current.left) if current.left
+    queue.push(current.right ) if current.right
+  end
+  return nil
+end
+#dfs with stack
+def dfs(node, target)
+  stack = []
+  stack.push(node)
+  until stack.empty?
+    current = stack.pop()
+    if current.value == target
+      return current
+    end
+    stack.push(current.right) if current.right
+    stack.push(current.left) if current.left
+  end
+end
+#dfs with recursion
+def dfs2(node, target)
+  return nil if !node
+  #dfs(node.left) - return node or nil
+  #dfs(node.right) - return node or nil
+  if node.value == target
+    return node
+  end
+  left = dfs(node.left)
+  right = dfs(node.right)
+  if left
+    return left
+  elsif right
+    return right
+  else
+    return nil
+  end
+
+end
+
+def in_order_traversal(root, values = [])
+  return values if !root
+  left, right = root.left, root.right
+  return in_order_traversal(left) + [root] + in_order_traversal(right)
+end
+
+def lca(node1, node2, root)
+  path1, path2 = [], []
+  find_path(root, node1.value, path1)
+  find_path(root, node2.value, path2)
+  path1.each do |el|
+    return el if path2.include?(el.value)
+  end
+
+  return nil
+end
+
+def find_path(node, target, path)
+  return false if !root
+  return true of node.value == target
+  if(node.left && find_path(node.left, target, path))
+    path.push(node.left)
+  end
+  if (node.right && find_path(node.right, target, path))
+    path.push(node.right)
+  end
+  return false
+end
+
+def merge_sort(arr)
+  return arr if arr.length < 2
+  middle = arr.length/2
+  left, right = arr[0...middle], arr[middle...arr.length]
+  sorted_left, sorted_right = merge_sort(left), merge_sort(right)
+  return merge(sorted_left, sorted_right)
+end
+
+def merge(left, right)
+  sorted = []
+  until left.empty? || right.empty?
+    if(left[0] <= right[0])
+      sorted.push(left.shift())
+    else
+      sorted.push(right.shift())
+    end
+  end
+  return left + sorted + right
+end
+
+def quick_sort(arr)
+  return arr if arr.length < 2
+  left, right = [], []
+  pivot = arr[0]
+  arr[1...arr.length].each do |el|
+    if el <= pivot
+      left.push(el)
+    else
+      right.push(el)
+    end
+  end
+
+  sorted_left, sorted_right = quick_sort(left), quick_sort(right)
+  return sorted_left + [pivot] + sorted_right
+end
+
+def binary_search(arr, target)
+  return nil if arr.count == 0
+  midpoint = arr.length/2
+  case target <=>  arr[midpoint]
+    when -1
+      binary_search(arr.take(midpoint), target)
+    when 0
+      return midpoint
+    when 1
+      ans = binary_search(arr.drop(midpoint + 1), target)
+      ans.nil? ? nil : (ans + midpoint + 1)
+  end
+end
+
+
+
+#trees/stacks/queues: bfs/dfs/in_order_traversal/lca - done
+#searches:  merge_sort, quick_sort, binary_search    - done
+#linked lists: detect a cycle in a linked List
+# heaps: find the median of a list of numbers
+# hash tables:
