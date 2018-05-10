@@ -799,6 +799,22 @@ def binary_search(arr, target)
   end
 end
 
+def has_cycle?(node)
+  count = Hash.new(0)
+  current = node
+  until !current
+    count[current] +=1
+    return true if count[current] > 1
+  end
+
+  return false
+end
+
+def median(arr)
+  return nil if !arr.count
+  
+end
+
 
 
 #trees/stacks/queues: bfs/dfs/in_order_traversal/lca - done
